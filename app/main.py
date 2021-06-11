@@ -9,9 +9,6 @@ api = Api(app)
 class HelloWorld(Resource):
     def get(self):
         number = random.randint(1, 5)
-        return send_file(f"images/alberto_{number}.jpg", mimetype='image/gif')
+        return send_file(f"../images/alberto_{number}.jpg", mimetype='image/gif')
 
 api.add_resource(HelloWorld, '/')
-
-if __name__ == '__main__':
-    app.run(debug=True)
