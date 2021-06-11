@@ -7,6 +7,7 @@ app = Flask(__name__)
 api = Api(app)
 
 class HelloWorld(Resource):
+    print("Hola")
     def get(self):
         number = random.randint(1, 22)
         return send_file(f"../images/alberto_{number}.jpg", mimetype='image/gif')
