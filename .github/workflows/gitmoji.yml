@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Check PR title
       run: |
-        if [[ $(echo "${{ github.event.pull_request.title }}" | head -c1) != "📝" ]]; then
-          echo "::error::PR title should start with ':'"
+        if [[ $(echo "${{ github.event.pull_request.title }}" | head -c1 | grep -cE "[:emoji:]") -eq 0 ]]; then
+          echo "::error::PR title should start with ':' or an emoji"
           exit 1
         fi
