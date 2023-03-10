@@ -4,11 +4,6 @@ on:
    types: [opened, synchronize]
    
 jobs:
-  prod-check:
-    if: ${{ github.event.pull_request.title }}
-    runs-on: ubuntu-latest
-    steps:
-      - run: exit 1
   check_pr_title:
     runs-on: ubuntu-latest
     steps:
