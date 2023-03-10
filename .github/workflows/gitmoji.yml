@@ -4,8 +4,8 @@ on:
    types: [opened, synchronize]
    
 jobs:
-  pull_request_review:
-    runs-on: ubuntu-20.04
+  prod-check:
+    if: ${{ github.event.pull_request.title.startsWith(:)}}
+    runs-on: ubuntu-latest
     steps:
-    - name : Print Title of PR
-      run: echo The Title of your PR is ${{ github.event.pull_request.title }}
+      - run: exit 1
