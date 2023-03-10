@@ -1,17 +1,13 @@
 on:
-  push:
   pull_request:
-   types: [opened, synchronize]
    
 jobs:
-  check_pr_title:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Check PR title
       run: |
-        title=${{ github.event.pull_request.title }}
-        echo title
-        if [[ ${title:0:1} != ":" ]]; then
-          echo "El título del pull request no comienza con ':'"
+        if [[ $(echo "${{ github.event.pull_request.title }}" | head -c1) != ":" ]]; then
+          echo "::error::PR title should start with ':'"
           exit 1
         fi
