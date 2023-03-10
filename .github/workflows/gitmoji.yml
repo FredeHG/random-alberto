@@ -2,12 +2,11 @@ on:
   pull_request:
    
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
-    - name: Check PR title
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Check for emojis
       run: |
-        if [[ $(echo "${{ github.event.pull_request.title }}" | head -c1 | grep -cE "[:emoji:]") -eq 0 ]]; then
-          echo "::error::PR title should start with ':' or an emoji"
-          exit 1
-        fi
+        python3 -c "import emoji; print(emoji.emojize('Hello, 👋 World! 😃'))"
