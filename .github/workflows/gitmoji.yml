@@ -5,7 +5,17 @@ on:
    
 jobs:
   prod-check:
-    if: ${{ github.event.pull_request.title.startsWith(:)}}
+    if: ${{ github.event.pull_request.title }}
     runs-on: ubuntu-latest
     steps:
       - run: exit 1
+  check_pr_title:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check PR title
+      run: |
+        title=${{ github.event.pull_request.title }}
+        if [[ ${title:0:1} != ":" ]]; then
+          echo "El título del pull request no comienza con ':'"
+          exit 1
+        fi
