@@ -10,6 +10,7 @@ jobs:
     - name: Check PR title
       run: |
         title=${{ github.event.pull_request.title }}
+        echo title
         if [[ ${title:0:1} != ":" ]]; then
           echo "El título del pull request no comienza con ':'"
           exit 1
