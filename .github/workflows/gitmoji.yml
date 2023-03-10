@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Check PR title
       run: |
-        if [[ $(echo "${{ github.event.pull_request.title }}" | head -c1) != ":" ]]; then
+        if [[ $(echo "${{ github.event.pull_request.title }}" | head -c1) != "📝" ]]; then
           echo "::error::PR title should start with ':'"
           exit 1
         fi
