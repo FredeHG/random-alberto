@@ -7,9 +7,10 @@ jobs:
     steps:
     - name: Check PR title
       run: |
-        echo "${{ github.event.pull_request.title }}" | grep -E '[[:alnum:][:space:][:punct:]]*'
-        if [ $? -eq 0 ]; then
-          exit 0
+        if echo "${{ github.event.pull_request.title }}" | grep -q -P '[\x{1F600}-\x{1F64F}]'; then
+            echo "Se encontró un emoji en el string"
+            exit 0
         else
-          exit 1
+            echo "No se encontró ningún emoji en el string"
+            exit 1
         fi
