@@ -2,11 +2,14 @@ on:
   pull_request:
    
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Check for emojis
+    - name: Check PR title
       run: |
-        python3 -c "import emoji; print(emoji.emojize('Hello, 👋 World! 😃'))"
+        echo ${{ github.event.pull_request.title }} | grep -q -E '[🌟-🌟]'
+        if [ $? -eq 0 ]; then
+          exit 0
+        else
+          exit 1
+        fi
