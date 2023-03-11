@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Check PR title
       run: |
-        echo ${{ github.event.pull_request.title }} | grep -q -E '[🌟-🌟]'
+        echo "${{ github.event.pull_request.title }}" | grep -q -E '[🌟-🌟]'
         if [ $? -eq 0 ]; then
           exit 0
         else
